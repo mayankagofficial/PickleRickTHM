@@ -11,11 +11,11 @@ The first thing I did after getting the IP address was to run the nmap tool to s
 `sudo nmap -O -A 10.10.11.32`
 
 Now u must be thinking why did i used sudo. Well, let's do it without sudo first and see what I get
-![[nmap error.png]]
+![[Screenshots/nmap error.png]]
 We need sudo to do OS scan.
 
 So now let's look at the nmap results
-![[nmap.png]]
+![[Screenshots/nmap.png]]
 
 Great. We have SSH and HTTP open. 
 
@@ -39,53 +39,53 @@ Awesome. Now I went back to check if gobuster got anything useful for us
 Great! Now we have few urls to check. Let's check each one of them and see what they have for us.
 	
 First one I looked at is robots.txt
-![[robots.png]]
+![[Screenshots/robots.png]]
 Ohh this is a hint. But what can it possibly be. 
 
 Let's checkout the login page
-![[login page_without credential.png]]
+![[Screenshots/login page_without credential.png]]
 	
 We can use the username which we got earlier and password from the hint we got in robots.txt. 
-![[login page_with credential.png]]
+![[Screenshots/login page_with credential.png]]
 	
 Well I got in at the first try. Lucky me. Now I am welcomed with this beautiful command panel.
-![[portal without command.png]]
+![[Screenshots/portal without command.png]]
 	
 
 ## Exploitation
 
 Now i will try `ls` command (my favourite) and we see **Sup3rS3cretPickl3Ingred.txt** file
-![[portal with ls command.png]]
+![[Screenshots/portal with ls command.png]]
 
 Great. Let's do cat and see what are the contents of this file. Ohh no <u>command disabled</u>
-![[portal with cat command.png]]
+![[Screenshots/portal with cat command.png]]
 
 Now let's try to do a get a reverse shell to find out the files in this server. Since this is a php page, let's try the reverse shell payload from [PayloadAllTheThings github repo](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
-![[payload.png]]
+![[Screenshots/payload.png]]
 	
 I used the last payload and replaced my tunnel IP address and port as 8080 *(Any port can be used. It's just 8080 is my personal preference)*. I am also starting the netcat listener to listen to port 8080 in the command prompt to receive the shell
 ![[netcat empty.png]]
-![[portal with reverse shell payload.png]]
+![[Screenshots/portal with reverse shell payload.png]]
 	
 Once I execute the payload, the screen is stuck in loading. Now let's look at the command prompt to confirm whether we got the shell or not 
-![[netcat after getting the shell access.png]]
+![[Screenshots/netcat after getting the shell access.png]]
 
 Great. We have the reverse shell now. Now let's try to run some commands
-![[whoami confirmation.png]]
+![[Screenshots/whoami confirmation.png]]
 Now we know we are *www-data* user and we can see the *Sup3rS3cretPickl3Ingred.txt* file which we have to read.
 	
 Let's read the file with cat command.
-![[First Flag.png]]
+![[Screenshots/First Flag.png]]
 Wow. We have our first flag 
 	
 Now let's explore further
-![[Second Flag.png]]
+![[Screenshots/Second Flag.png]]
 We got the second flag in the directory /home/rick
 
 ## Priviledge Escalation
 
 Now let's see if we have the root permission to explore further
-![[Third Flag.png]]
+![[Screenshots/Third Flag.png]]
 
 Once we know that we can run the sudo command with no restriction we started the bash to get the root access. That’s it! We got the last flag.
 	
