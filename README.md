@@ -11,6 +11,7 @@ The first thing I did after getting the IP address was to run the nmap tool to s
 `sudo nmap -O -A 10.10.11.32`
 
 Now u must be thinking why did i used sudo. Well, let's do it without sudo first and see what I get
+![plot](Screenshots/nmap error.png)
 ![[Screenshots/nmap error.png]]
 We need sudo to do OS scan.
 
