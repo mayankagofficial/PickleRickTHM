@@ -1,4 +1,4 @@
-# Pickle Rick THM Walkthrough
+# Pickle Rick THM Writeup
 
 Today I am going to solve my first challenge "Pickle Rick". It is available in TryHackMe for penetration testing practice. The challenge level is easy. Let's start by booting up the target machine in the tryhackme page. U can find the link for the room [here](https://tryhackme.com/room/picklerick). After boot up, tryhackme will assign an ip address to the machine and it will be visible on that page as well. 
 
